@@ -43,11 +43,11 @@ create table commande(
     idComm serial primary key,
     idCompteTier int not null,
     dateComm date not null,
-    montantComm float not null,
+    prixttc float not null,
     FOREIGN KEY (idCompteTier) REFERENCES compteTier (idCompteTier)
 );
 
-create table detaiCommande(
+create table detailCommande(
     idDetail serial primary key,
     idComm int not null,
     idArticle int not null,
@@ -55,7 +55,9 @@ create table detaiCommande(
     FOREIGN KEY (idComm) REFERENCES commande (idComm),
     FOREIGN KEY (idArticle) REFERENCES article (idArticle)
 );
+insert into commande (idCompteTier,dateComm,prixttc) values(1,now(),6500);
 
+insert into detailCommande (idComm,idArticle,quantiteComm) values (1,1,4),(1,2,6);
 -- show client(comptetier)
 SELECT  idCompteTier, pre, intitule as societe, CONCAT(prefixe,':',intitule) AS intitule,nomResponsable,email,adresse,phone FROM CompteTier c
     JOIN planTier p 

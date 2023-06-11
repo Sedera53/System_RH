@@ -161,15 +161,13 @@
                 <div class="prix" style="font-weight:bold;">
                 </div>
                 <div class="bord"></div>						
-                
             </div>		
-            
         </div>
     </div>
     <div style="float:left;width:10%;height:auto;"></div>	
     
     <div class="div_saut_ligne" style="height:30px;">
-    </div>
+</div>
 </main>
 </section>
 
@@ -211,7 +209,7 @@ document.getElementById('qte_commande').addEventListener('input', function() {
 				var des_p = designation.value;
 				var pht_p = puht.value;
 				
-				tot_com = tot_com + qte_p*pht_p;
+				tot_com = tot_com + (qte_p*pht_p)*1.2;
 				total_commande.value = tot_com.toFixed(2);
 				total_com.value = total_commande.value;
 				chaine_com.value += "|" + ref_p + ";" + qte_p + ";" + des_p + ";" + pht_p;				
@@ -220,6 +218,7 @@ document.getElementById('qte_commande').addEventListener('input', function() {
 		}
 	}
 	
+
 	function facture()
 	{		
 		var tab_com = chaine_com.value.split('|');
@@ -236,8 +235,20 @@ document.getElementById('qte_commande').addEventListener('input', function() {
 				document.getElementById("det_com").innerHTML += "<div class='des'>" + ligne_com[2] + "</div>";
 				document.getElementById("det_com").innerHTML += "<div class='prix'>" + (ligne_com[3]*ligne_com[1]).toFixed(2) + "</div>";
 				document.getElementById("det_com").innerHTML += "<div class='prix'>" + (1.2*(ligne_com[3]*ligne_com[1])).toFixed(2) + "</div>";
-				document.getElementById("det_com").innerHTML += "<div class='bord'></div>";											
+				document.getElementById("det_com").innerHTML += "<div class='bord'><input type='button' value='X' title='Supprimer le produit' style='height:20px; font-size:12px;' onclick='suppr(\"" + tab_com[ligne] + "\");' /></div>";											
 			}
 		}		
 	}
+
+    function suppr( ligne_s)
+{
+    chaine_com.value = chaine_com.value.replace('|' + ligne_s, '');
+    var tab_detail = ligne_s.split(";");
+
+    total_commande.value = (total_commande.value - (tab_detail[1]*tab_detail[3])*1.2).toFixed(2);
+    total_com.value = total_commande.value;
+    tot_com = total_com.value*1;
+
+    facture();
+}
 </script>
