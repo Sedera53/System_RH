@@ -29,7 +29,7 @@
         <li>
             <a href="#">
                 <i class='bx bxs-doughnut-chart' ></i>
-                <span class="text">Analytics</span>
+                <span class="text">Journal</span>
             </a>
         </li>
         <li>
@@ -87,4 +87,3 @@
         </a>
     </nav>
 <!-- CONTENT -->
-<script src="<?php echo base_url()?>/assets/js/admin.js"></script>
