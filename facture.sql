@@ -17,7 +17,7 @@ create table article(
     idUnite int default 0,
     FOREIGN KEY (idUnite) REFERENCES unite (idUnite)
 );
-INSERT INTO article (designation,prixUnitaire,quantite,idUnite) VALUES ('mais',1250,30,1),('voanjo',1300,20,1),('vomanga',2200,10,1);
+INSERT INTO article (designation,prixUnitaire,quantite,idUnite) VALUES ('Armoire',500000,50,1),('Chaise de bureau',70000,80,1),('Table basse',120000,60,1);
 
 CREATE TABLE planTier(
     idPlanTier INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -62,3 +62,12 @@ insert into detailCommande (idComm,idArticle,quantiteComm) values (1,1,4),(1,2,6
 SELECT  idCompteTier, pre, intitule as societe, CONCAT(prefixe,':',intitule) AS intitule,nomResponsable,email,adresse,phone FROM CompteTier c
     JOIN planTier p 
     ON c.idPlanTier = p.idPlanTier;
+    
+-- Noumts
+SELECT a.designation AS designation, quantiteComm AS quantite, a.prixUnitaire AS prixUnitaire, c.dateComm AS datecommande, c.idCompteTier AS idCompteTier,
+    d.idComm AS idcommande, ct.nomResponsable AS nomResponsable, ct.intitule, ct.email, ct.adresse, ct.phone,c.prixttc as ttc
+FROM detailCommande d
+JOIN article a ON a.idArticle = d.idArticle
+JOIN commande c ON c.idComm = d.idComm
+JOIN compteTier ct ON c.idCompteTier = ct.idCompteTier
+WHERE c.idCompteTier = 1 and d.idComm = 1 and c.dateComm = '2023-06-13' limit 1;

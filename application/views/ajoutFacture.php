@@ -19,7 +19,7 @@
     
     <div style="float:left;width:10%;height:350px;"></div>
     <div style="float:left;width:80%;height:350px;text-align:center;">
-    <form id="formulaire" name="formulaire" method="post" action="#">
+    <form id="formulaire" name="formulaire" method="post" action="<?php echo base_url('C_control/ajoutValeurFacture')?>">
         <div class="titre_h1" style="height:370px;">
             <div style="width:10%;height:50px;float:left;"></div>
             <div style="width:35%;height:50px;float:left;font-size:20px;font-weight:bold;text-align:left;color:#a13638;">
@@ -27,35 +27,36 @@
             </div>
             <div style="width:10%;height:50px;float:left;"></div>
             <div style="width:35%;height:50px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                <a href="#"><input type="button" id="creer_client" name="creer_client" value="Voir produit" /></a>
+                
             </div>
             <div style="width:10%;height:50px;float:left;"></div>
 
             <div style="width:10%;height:75px;float:left;"></div>
             <div style="width:15%;height:75px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                 Réf. Client :<br />
-                <?php for ($i=0;$i<count($tab[1]);$i++) { ?>
-                <input type="text" id="ref_client" name="ref_client" value="<?php echo "Clt". " ".$tab[1][$i]['idCompteTier'];?>"/>
+                <select id="ref_client" name="ref_client">
+                <?php for($i=0; $i<count($tab[0]); $i++) { ?> 
+                    <option value="<?php echo $tab[0][$i]['idCompteTier']; ?>"
+                            data-societe="<?php echo $tab[0][$i]['societe']; ?>"
+                            data-nomresponsable="<?php echo $tab[0][$i]['nomResponsable']; ?>"
+                            data-adresse="<?php echo $tab[0][$i]['adresse']; ?>">
+                    <?php echo "CLT:" . $tab[0][$i]['societe']; ?>
+                    </option>
                 <?php } ?>
+                </select>
             </div>
             <div style="width:15%;height:75px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                 Sociéte :<br />
-                <?php for ($i=0;$i<count($tab[1]);$i++) { ?>
-                <input type="text" id="civilite" name="societe" value="<?php echo $tab[1][$i]['societe'];?>"/>
-                <?php } ?>
+                <input type="text" id="civilite" name="societe" disabled style="text-align:center;"/>
             </div>
             
             <div style="width:25%;height:75px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                 Nom du client :<br />
-                <?php for ($i=0;$i<count($tab[1]);$i++) { ?>
-                <input type="text" id="nom_client" name="responsable" value="<?php echo $tab[1][$i]['nomResponsable'];?>"/>
-                <?php } ?>
+                <input type="text" id="nom_client" name="responsable" disabled/>
             </div>
             <div style="width:25%;height:75px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                 Adresse :<br />
-                <?php for ($i=0;$i<count($tab[1]);$i++) { ?>
-                <input type="text" id="prenom_client" name="adresse" value="<?php echo $tab[1][$i]['adresse'];?>"/>
-                <?php } ?>
+                <input type="text" id="prenom_client" name="adresse" disabled style="text-align:center;"/>
             </div>					
             <div style="width:10%;height:75px;float:left;"></div>
 
@@ -72,19 +73,19 @@
             <div style="width:15%;height:75px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                 Réf. Produit :<br />
                 <select id="ref_produit" name="ref_produit">
-                <?php for($i=0; $i<count($tab[2]); $i++) { ?> 
-                    <option value="<?php echo $tab[2][$i]['idArticle']; ?>"
-                            data-qte="<?php echo $tab[2][$i]['quantite']; ?>"
-                            data-designation="<?php echo $tab[2][$i]['designation']; ?>"
-                            data-puht="<?php echo $tab[2][$i]['prixUnitaire']; ?>">
-                    <?php echo "Art" . " " . $tab[2][$i]['idArticle']; ?>
+                <?php for($i=0; $i<count($tab[1]); $i++) { ?> 
+                    <option value="<?php echo $tab[1][$i]['idArticle']; ?>"
+                            data-qte="<?php echo $tab[1][$i]['quantite']; ?>"
+                            data-designation="<?php echo $tab[1][$i]['designation']; ?>"
+                            data-puht="<?php echo $tab[1][$i]['prixUnitaire']; ?>">
+                    <?php echo "ART:" . $tab[1][$i]['designation']; ?>
                     </option>
                 <?php } ?>
                 </select>
             </div>
             <div style="width:15%;height:75px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                 Qté en stock :<br />
-                <input type="text" id="qte" name="qte" disabled style="text-align:right;" />
+                <input type="text" id="qte" name="qte" disabled style="text-align:center;" />
             </div>
             <div style="width:25%;height:75px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                 Désignation du produit :<br />
@@ -92,7 +93,7 @@
             </div>
             <div style="width:25%;height:75px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                 Prix unitaire HT :<br />
-                <input type="text" id="puht" name="puht" disabled style="text-align:right;" />
+                <input type="text" id="puht" name="puht" disabled style="text-align:center;" />
             </div>		
             <div style="width:10%;height:75px;float:left;"></div>				
 
@@ -113,7 +114,7 @@
                 <input type="text" id="param" name="param" style="visibility:hidden;" />
             </div>
             <div style="width:25%;height:75px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                <input type="button" id="valider" name="valider" value="Valider" style="margin-top:10px;" /><br />
+                <input type="submit" id="valider" name="valider" value="Valider" style="margin-top:10px;" /><br />
                 <input type="text" id="chaine_com" name="chaine_com" style="visibility:hidden;" />
                 <input type="text" id="total_com" name="total_com" style="visibility:hidden;" />						
             </div>			
@@ -170,8 +171,21 @@
 </div>
 </main>
 </section>
-
 <script language='javascript' type="text/javascript">
+    document.getElementById('ref_client').addEventListener('change', function() {
+  var selectedValue = this.value;
+  var selectedOption = Array.from(this.options).find(function(option) {
+    return option.value === selectedValue;
+  });
+  if (selectedOption) {
+    document.getElementById('civilite').value = selectedOption.getAttribute('data-societe');
+    document.getElementById('nom_client').value = selectedOption.getAttribute('data-nomresponsable');
+    document.getElementById('prenom_client').value = selectedOption.getAttribute('data-adresse');
+  }
+});
+</script>
+<script language='javascript' type="text/javascript">
+
 document.getElementById('ref_produit').addEventListener('change', function() {
   var selectedValue = this.value;
   var selectedOption = Array.from(this.options).find(function(option) {
