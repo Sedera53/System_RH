@@ -11,7 +11,7 @@
 <section id="sidebar">
     <a href="<?php echo base_url('C_control/loadAccueil')?>" class="brand">
         <i class='bx bxs-smile'></i>
-        <span class="text">AdminHub</span>
+        <span class="text">Dimpex</span>
     </a>
     <ul class="side-menu top">
         <li class="active">
@@ -27,21 +27,21 @@
             </a>
         </li>
         <li>
-            <a href="#">
-                <i class='bx bxs-doughnut-chart' ></i>
-                <span class="text">Journal</span>
+            <a href="<?php echo base_url('C_control/addFacture')?>">
+                <i class='bx bxs-message-dots' ></i>
+                <span class="text">Facturation</span>
             </a>
         </li>
         <li>
-            <a href="#">
-                <i class='bx bxs-message-dots' ></i>
-                <span class="text">Message</span>
+            <a href="<?php echo base_url('C_control/loadFormFacture')?>">
+                <i class='bx bxs-doughnut-chart' ></i>
+                <span class="text">Voir facture</span>
             </a>
         </li>
         <li>
             <a href="#">
                 <i class='bx bxs-group' ></i>
-                <span class="text">Team</span>
+                <span class="text">Journal</span>
             </a>
         </li>
     </ul>
@@ -87,3 +87,4 @@
         </a>
     </nav>
 <!-- CONTENT -->
+

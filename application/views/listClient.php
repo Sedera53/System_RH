@@ -28,13 +28,8 @@
             <td><?php echo $d['phone']?></td>
             <td><?php echo $d['intitule']?></td>
             <td>
-              <a href="#" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-              <?php
-              if($d['pre'] == "Cl") {  ?> 
-                <a href="<?php echo base_url('C_control/addFacture')?>?idCompteTier=<?php echo $d['idCompteTier'];?>" class="link-dark"><i class="fa-sharp fa-solid fa-file-invoice-dollar fa-lg"></i></a>
-              <?php } else { ?>
+                <a href="#" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
                 <a href="#" class="link-dark"><i class="fa-solid fa-trash fs-5"></i></a>
-              <?php } ?>
             </td>
           </tr>
         <?php } ?>

@@ -2,16 +2,77 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_control extends CI_Controller {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->database();
+    }
+    public function showFacture(){
+        $id1 = $this->input->post('idCompteTier');
+        $id2 = $this->input->post('idComm');
+        $daty = $this->input->post('daty');
+        $this->load->model('Commande');
+        $data = $this->Commande->getFacture($id1,$id2,$daty);
+        $data2 = $this->Commande->getFactureOne($id1,$id2,$daty);
+        $array['tab'] = array($data2,$data);
+        $this->load->view('facture',$array);
+    }
+    public function loadFormFacture(){
+        $this->load->model('Client');
+        $this->load->model('Commande');
+        $data = $this->Client->getAllClient();
+        $data2 = $this->Commande->getAllCommande();
+        $array['tab'] = array($data,$data2);
+        $this->load->view('accueil');
+        $this->load->view('voirFacture',$array);
+    }
+    public function ajoutValeurFacture(){
+        $com_client = $this->input->post("ref_client");
+        date_default_timezone_set('Europe/Paris');
+        $com_date = date('Y-m-d');
+        $com_montant = $this->input->post("total_com");
 
+        $texte_com = $this->input->post("chaine_com");
+        $tab_com = explode('|', $texte_com);
+
+        $this->db->trans_start(); 
+
+        $commande_data = array(
+            'idCompteTier' => $com_client,
+            'dateComm' => $com_date,
+            'prixttc' => $com_montant
+        );
+        $this->db->insert('commande', $commande_data);
+        $detail_com = $this->db->insert_id();
+
+        foreach ($tab_com as $ligne_com) {
+            if (!empty($ligne_com)) {
+                $ligne_com = explode(';', $ligne_com);
+                $detail_data = array(
+                    'idComm' => $detail_com,
+                    'idArticle' => $ligne_com[0],
+                    'quantiteComm' => $ligne_com[1]
+                );
+                $this->db->insert('detailCommande', $detail_data);
+                $this->db->set('quantite', 'quantite-' . $ligne_com[1], false);
+                $this->db->where('idArticle', $ligne_com[0]);
+                $this->db->update('article');
+            }
+        }
+        $this->db->trans_complete();
+        if ($this->db->trans_status()) {
+            redirect('C_control/loadClient');
+        } else {
+            echo "Insertion non validé";
+        }
+    }
     public function addFacture(){
         $this->load->model('Client');
-        $idCompteTier = $this->input->get('idCompteTier');
         $idCompteTier2 = $this->input->post('ref_client');
         $data = $this->Client->getAllClient();
-        $fact = $this->Client->getClientById($idCompteTier);
         $this->load->model('Article');
         $article = $this->Article->getAllArticle();
-        $array['tab'] = array($data,$fact,$article);
+        $array['tab'] = array($data,$article);
         $this->load->view('accueil');
         $this->load->view('ajoutFacture',$array);
     }
