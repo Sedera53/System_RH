@@ -5,21 +5,22 @@
     <div class="text-header">Facture</div>
   </div>
   <div class="card-body">
-    <form action="<?php echo base_url('C_control/showFacture') ?>" method="post">
+    <form id="formulaire" action="<?php echo base_url('C_control/showFacture') ?>" method="post">
         <div class="form-group">
             <label for="classe">Client</label>
-            <select class="form-control" name="idCompteTier">
+            <select class="form-control" id="idCompteTier" name="idCompteTier">
                 <?php for ($i=0; $i <count($tab[0]) ; $i++) { ?>
-                    <option value="<?php echo $tab[0][$i]['idCompteTier']?>"><?php echo "CLT:" . $tab[0][$i]['societe']; ?></option>
+                    <option value="<?php echo $tab[0][$i]['idCompteTier']?>"
+                        ><?php echo "CLT:" . $tab[0][$i]['societe']; ?></option>
                 <?php } ?>
             </select>
         </div>    
         <div class="form-group">
             <label for="classe">Ref. facture</label>
-            <select class="form-control" name="idComm">
+            <select class="form-control" id="idComm" name="idComm">
             <?php for ($i=0; $i <count($tab[1]) ; $i++) { ?>
                 <?php date_default_timezone_set('Europe/Paris'); ?>
-                <option value="<?php echo $tab[1][$i]['idComm']?>"><?php echo "dpx/".date("m",strtotime($tab[1][$i]['dateComm']))."/".date("Y",strtotime($tab[1][$i]['dateComm']))."/".str_pad($tab[1][$i]['idComm'], 3, '0', STR_PAD_LEFT);?></option>
+                <option value="<?php echo $tab[1][$i]['idComm']?>"><?php echo "dpx/".date("m",strtotime($tab[1][$i]['datecommande']))."/".date("Y",strtotime($tab[1][$i]['datecommande']))."/".str_pad($tab[1][$i]['idComm'], 3, '0', STR_PAD_LEFT);?></option>
             <?php } ?>
             </select>
         </div>    

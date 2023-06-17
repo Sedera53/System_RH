@@ -17,7 +17,7 @@ create table article(
     idUnite int default 0,
     FOREIGN KEY (idUnite) REFERENCES unite (idUnite)
 );
-INSERT INTO article (designation,prixUnitaire,quantite,idUnite) VALUES ('Armoire',500000,50,1),('Chaise de bureau',70000,80,1),('Table basse',120000,60,1);
+INSERT INTO article (designation,prixUnitaire,quantite,idUnite) VALUES ('Armoire',500000,150,1),('Chaise de bureau',70000,180,1),('Table basse',120000,160,1);
 
 CREATE TABLE planTier(
     idPlanTier INTEGER PRIMARY KEY AUTO_INCREMENT,

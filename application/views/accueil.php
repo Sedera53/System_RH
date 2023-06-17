@@ -33,15 +33,15 @@
             </a>
         </li>
         <li>
-            <a href="<?php echo base_url('C_control/loadFormFacture')?>">
+            <a href="#">
                 <i class='bx bxs-doughnut-chart' ></i>
-                <span class="text">Voir facture</span>
+                <span class="text">Journal</span>
             </a>
         </li>
         <li>
             <a href="#">
                 <i class='bx bxs-group' ></i>
-                <span class="text">Journal</span>
+                <span class="text">Grand Livre</span>
             </a>
         </li>
     </ul>
@@ -83,7 +83,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="<?php echo base_url()?>/assets/img/people.png">
+            <img src="<?php echo base_url()?>/assets/img/logo.png">
         </a>
     </nav>
 <!-- CONTENT -->

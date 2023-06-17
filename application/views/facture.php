@@ -1,4 +1,3 @@
-
     <link href="<?php echo base_url(); ?>assets/css/stylefacture.css" rel="stylesheet">
     <section >
     <div id="logo">
@@ -16,7 +15,7 @@
         <div id="detailfacture">
         <?php for ($i=0; $i <count($tab[0]) ; $i++) { ?>
                 <?php date_default_timezone_set('Europe/Paris') ?>
-            <p>facture N°: <b><?php echo "dpx/".date("m",strtotime($tab[0][$i]['datecommande']))."/".date("Y",strtotime($tab[0][$i]['datecommande']))."/".str_pad(($tab[1][$i]['idcommande']), 3, '0', STR_PAD_LEFT);?></b></p>
+            <p>Facture N°: <b><?php echo "dpx/".date("m",strtotime($tab[0][$i]['datecommande']))."/".date("Y",strtotime($tab[0][$i]['datecommande']))."/".str_pad(($tab[1][$i]['idcommande']), 3, '0', STR_PAD_LEFT);?></b></p>
             <p><b>Antananarivo, le <?php echo $tab[0][$i]['datecommande'];?></b></p>
         <?php } ?>
         </div>
@@ -30,7 +29,7 @@
         <?php } ?>
         </div>
         <div id="objet">
-            <h4>objet: Vente immobilier</h4>
+            <h4>Objet: Vente immobilier</h4>
         </div>
         <br>
         <table>
@@ -38,8 +37,8 @@
         <tr>
             <th>Description</th>
             <th>Quantite</th>
-            <th>P.U</th>
-            <th>montant</th>
+            <th>Prix Unitaire</th>
+            <th>Montant</th>
         </tr>
         </thead>
 
@@ -89,8 +88,10 @@
     <hr>
     <div id="sonia1">
         <p>Le client</p>
+        <p>TEST</p>
     </div>
     <div id="sonia2">
         <p>Le Societe</p>
+        <p>DIMPEX</p>
     </div>
 </section>

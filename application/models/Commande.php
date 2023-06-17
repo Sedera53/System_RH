@@ -7,6 +7,15 @@ class Commande extends CI_Model {
         parent::__construct();
         $this->load->database();
     }
+    public function getClientFacture($id){
+        $sql = "SELECT c.idComm,c.dateComm AS datecommande, c.idCompteTier AS idCompteTier,
+        ct.nomResponsable AS nomResponsable, ct.intitule, ct.email, ct.adresse, ct.phone,c.prixttc as ttc
+        FROM commande c
+        JOIN compteTier ct ON c.idCompteTier = ct.idCompteTier where c.idCompteTier='$id'";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        return $result;
+    }
     public function getFactureOne($idtier,$idcomm,$daty){
         $sql = "SELECT a.designation AS designation, quantiteComm AS quantite, a.prixUnitaire AS prixUnitaire, c.dateComm AS datecommande, c.idCompteTier AS idCompteTier,
         d.idComm AS idcommande, ct.nomResponsable AS nomResponsable, ct.intitule, ct.email, ct.adresse, ct.phone,c.prixttc as ttc
