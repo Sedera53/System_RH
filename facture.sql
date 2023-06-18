@@ -46,11 +46,14 @@ create table codejournal(
     typeCodeJournal varchar(75)
 );
 INSERT INTO codejournal (code,typeCodeJournal) VALUES ('AC','ACHAT'),('AN','A NOUVEAU'),('BN','BANQUE BNI'),('BO','BANQUE BOA'),('CA','CAISSE'),('OD','OPERATION DIVERSE'),('VE','VENTE EXPORT'),('VL','VENTE LOCALE');
+
 create table commande(
     idComm serial primary key,
     idCompteTier int not null,
     dateComm date not null,
     prixttc float not null,
+    prixht float not null,
+    prixtva float not null,
     FOREIGN KEY (idCompteTier) REFERENCES compteTier (idCompteTier)
 );
 
