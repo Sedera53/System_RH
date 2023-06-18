@@ -33,13 +33,13 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="<?php echo base_url('C_control/loadJournal')?>">
                 <i class='bx bxs-doughnut-chart' ></i>
                 <span class="text">Journal</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="<?php echo base_url('C_control/loadGrandLivre')?>">
                 <i class='bx bxs-group' ></i>
                 <span class="text">Grand Livre</span>
             </a>

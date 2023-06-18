@@ -7,6 +7,14 @@ class C_control extends CI_Controller {
         parent::__construct();
         $this->load->database();
     }
+    public function loadGrandLivre(){
+        $this->load->view('accueil');
+        $this->load->view('GrandLivre');
+    }
+    public function loadJournal(){
+        $this->load->view('accueil');
+        $this->load->view('Journal');
+    }
     public function showFacture(){
         $id1 = $this->input->post('idCompteTier');
         $id2 = $this->input->post('idComm');
