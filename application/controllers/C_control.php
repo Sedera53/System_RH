@@ -7,6 +7,14 @@ class C_control extends CI_Controller {
         parent::__construct();
         $this->load->database();
     }
+    public function loadGrandLivre(){
+        $this->load->view('accueil');
+        $this->load->view('GrandLivre');
+    }
+    public function loadJournal(){
+        $this->load->view('accueil');
+        $this->load->view('Journal');
+    }
     public function showFacture(){
         $id1 = $this->input->post('idCompteTier');
         $id2 = $this->input->post('idComm');
@@ -18,10 +26,11 @@ class C_control extends CI_Controller {
         $this->load->view('facture',$array);
     }
     public function loadFormFacture(){
+        $id = $this->input->get('idCompteTier');
         $this->load->model('Client');
         $this->load->model('Commande');
-        $data = $this->Client->getAllClient();
-        $data2 = $this->Commande->getAllCommande();
+        $data = $this->Client->getClientById($id);
+        $data2 = $this->Commande->getClientFacture($id);
         $array['tab'] = array($data,$data2);
         $this->load->view('accueil');
         $this->load->view('voirFacture',$array);

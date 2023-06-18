@@ -17,7 +17,7 @@ create table article(
     idUnite int default 0,
     FOREIGN KEY (idUnite) REFERENCES unite (idUnite)
 );
-INSERT INTO article (designation,prixUnitaire,quantite,idUnite) VALUES ('Armoire',500000,50,1),('Chaise de bureau',70000,80,1),('Table basse',120000,60,1);
+INSERT INTO article (designation,prixUnitaire,quantite,idUnite) VALUES ('Armoire',500000,150,1),('Chaise de bureau',70000,180,1),('Table basse',120000,160,1);
 
 CREATE TABLE planTier(
     idPlanTier INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -39,6 +39,13 @@ create table compteTier(
 );
 insert into compteTier (idPlanTier,intitule,nomResponsable,email,adresse,phone) 
 values(1,'LOVASOA','RaNoum','lovasoa@gmail.com','lot 45 Ampefiloha','0345612110');
+
+create table codejournal(
+    idCodeJournal serial primary key,
+    code varchar(5),
+    typeCodeJournal varchar(75)
+);
+INSERT INTO codejournal (code,typeCodeJournal) VALUES ('AC','ACHAT'),('AN','A NOUVEAU'),('BN','BANQUE BNI'),('BO','BANQUE BOA'),('CA','CAISSE'),('OD','OPERATION DIVERSE'),('VE','VENTE EXPORT'),('VL','VENTE LOCALE');
 create table commande(
     idComm serial primary key,
     idCompteTier int not null,
