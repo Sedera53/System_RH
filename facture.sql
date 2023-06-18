@@ -39,6 +39,13 @@ create table compteTier(
 );
 insert into compteTier (idPlanTier,intitule,nomResponsable,email,adresse,phone) 
 values(1,'LOVASOA','RaNoum','lovasoa@gmail.com','lot 45 Ampefiloha','0345612110');
+
+create table codejournal(
+    idCodeJournal serial primary key,
+    code varchar(5),
+    typeCodeJournal varchar(75)
+);
+INSERT INTO codejournal (code,typeCodeJournal) VALUES ('AC','ACHAT'),('AN','A NOUVEAU'),('BN','BANQUE BNI'),('BO','BANQUE BOA'),('CA','CAISSE'),('OD','OPERATION DIVERSE'),('VE','VENTE EXPORT'),('VL','VENTE LOCALE');
 create table commande(
     idComm serial primary key,
     idCompteTier int not null,
