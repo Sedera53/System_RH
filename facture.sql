@@ -81,3 +81,56 @@ JOIN article a ON a.idArticle = d.idArticle
 JOIN commande c ON c.idComm = d.idComm
 JOIN compteTier ct ON c.idCompteTier = ct.idCompteTier
 WHERE c.idCompteTier = 1 and d.idComm = 1 and c.dateComm = '2023-06-13' limit 1;
+
+
+create or replace view v_mvt as
+select 
+c.dateComm,
+c.idComm,
+'411' as compte,
+CONCAT(prefixe,':',intitule) as libelle,
+c.prixttc as debit,
+'' as credit
+FROM detailCommande d
+JOIN commande c on c.idComm = d.idComm
+JOIN compteTier ct on ct.idCompteTier = c.idCompteTier
+JOIN planTier pt on pt.idPlanTier = ct.idPlanTier
+
+union
+
+select 
+c.dateComm,
+c.idComm,
+'707' as compte,
+'Vente de marchandises' as libelle,
+'' as debit,
+c.prixht as credit
+FROM detailCommande d
+JOIN commande c on c.idComm = d.idComm
+JOIN compteTier ct on ct.idCompteTier = c.idCompteTier
+JOIN planTier pt on pt.idPlanTier = ct.idPlanTier
+
+union
+
+select 
+c.dateComm,
+c.idComm,
+'4457' as compte,
+'TVA collécté' as libelle,
+'' as debit,
+c.prixtva as credit
+FROM detailCommande d
+JOIN commande c on c.idComm = d.idComm
+JOIN compteTier ct on ct.idCompteTier = c.idCompteTier
+JOIN planTier pt on pt.idPlanTier = ct.idPlanTier;
+
+
+select 
+v_mvt.dateComm,
+v_mvt.idComm,
+v_mvt.compte,
+v_mvt.libelle,
+v_mvt.debit,
+v_mvt.credit
+from v_mvt
+order by v_mvt.idComm,v_mvt.dateComm,v_mvt.libelle,v_mvt.debit desc
