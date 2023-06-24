@@ -8,12 +8,15 @@ class C_control extends CI_Controller {
         $this->load->database();
     }
     public function loadGrandLivre(){
+        
         $this->load->view('accueil');
         $this->load->view('GrandLivre');
     }
     public function loadJournal(){
+        $this->load->model('Journal');
+        $data['data'] = $this->Journal->getJournalVente();
         $this->load->view('accueil');
-        $this->load->view('Journal');
+        $this->load->view('Journal',$data);
     }
     public function showFacture(){
         $id1 = $this->input->post('idCompteTier');
@@ -39,7 +42,9 @@ class C_control extends CI_Controller {
         $com_client = $this->input->post("ref_client");
         date_default_timezone_set('Europe/Paris');
         $com_date = date('Y-m-d');
-        $com_montant = $this->input->post("total_com");
+        $com_ttc = $this->input->post("total_com");
+        $com_ht = ($com_ttc/120)*100;
+        $com_tva = $com_ttc-$com_ht;
 
         $texte_com = $this->input->post("chaine_com");
         $tab_com = explode('|', $texte_com);
@@ -49,7 +54,9 @@ class C_control extends CI_Controller {
         $commande_data = array(
             'idCompteTier' => $com_client,
             'dateComm' => $com_date,
-            'prixttc' => $com_montant
+            'prixttc' => $com_ttc,
+            'prixht' => $com_ht,
+            'prixtva' => $com_tva
         );
         $this->db->insert('commande', $commande_data);
         $detail_com = $this->db->insert_id();

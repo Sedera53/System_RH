@@ -5,7 +5,6 @@
       <th scope="col">Jour</th>
       <th scope="col">Numero piece</th>
       <th scope="col">N·compte</th>
-      <th scope="col">N·compte</th>
       <th scope="col">Libellé</th>
       <th scope="col">Devise</th>
       <th scope="col">Débit</th>
@@ -13,36 +12,17 @@
     </tr>
   </thead>
   <tbody>
+    <?php foreach ($data as $d) {?>
     <tr>
-      <th scope="row">03</th>
-      <td>0031</td>
-      <td>411</td>
-      <td></td>
-      <td>Client LOVASOA</td>
+      <th scope="row"><?php echo $d['dateComm']?></th>
+      <td>VNT:<?php echo $d['idComm']?></td>
+      <td><?php echo $d['compte']?></td>
+      <td><?php echo $d['libelle']?></td>
       <td>Ariary</td>
-      <td>3000</td>
-      <td></td>
+      <td><?php echo $d['debit']?></td>
+      <td><?php echo $d['credit']?></td>
     </tr>
-    <tr>
-      <th scope="row">03</th>
-      <td>0031</td>
-      <td></td>
-      <td>707</td>
-      <td>Vente de marchandises</td>
-      <td>Ariary</td>
-      <td></td>
-      <td>2500</td>
-    </tr>
-    <tr>
-      <th scope="row">03</th>
-      <td>0031</td>
-      <td></td>
-      <td>4457</td>
-      <td>TVA collécté</td>
-      <td>Ariary</td>
-      <td></td>
-      <td>500</td>
-    </tr>
+    <?php } ?>
   </tbody>
 </table>
 </main>
