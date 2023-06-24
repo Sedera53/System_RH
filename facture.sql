@@ -1,3 +1,5 @@
+create database facture;
+use facture;
 create table compte(
     idCompte serial primary key,
     numero int unique,
