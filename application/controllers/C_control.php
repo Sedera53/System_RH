@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_control extends CI_Controller {
     public function __construct()
-    {
+    { 
         parent::__construct();
         $this->load->database();
     }
@@ -22,7 +22,7 @@ class C_control extends CI_Controller {
         $id1 = $this->input->post('idCompteTier');
         $id2 = $this->input->post('idComm');
         $daty = $this->input->post('daty');
-        $this->load->model('Commande');
+        $this->load->model('Commande');          
         $data = $this->Commande->getFacture($id1,$id2,$daty);
         $data2 = $this->Commande->getFactureOne($id1,$id2,$daty);
         $array['tab'] = array($data2,$data);
