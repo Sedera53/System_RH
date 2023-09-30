@@ -6,15 +6,15 @@ CREATE TABLE Utilisateur(
     idUtilisateur int primary key auto_increment,
     nom varchar(100),
     prenom varchar(100),
-    idgenre int references genre (idgenre),
+    idgenre int references genre(idgenre),
     email varchar(100),
     mdp varchar(100),
     roles int default 0
 );
 -- admin (RH) --
-insert into utilisateur (nom,prenom,genre,email,mdp,roles) values ('REDMAN','Kratos',1,'kratos@gmail.com','1234',1);
+insert into utilisateur (nom,prenom,idgenre,email,mdp,roles) values ('REDMAN','Kratos',1,'kratos@gmail.com','1234',1);
 -- client (données de test) --
-insert into utilisateur (nom,prenom,genre,email,mdp,roles) values ('REDMAN','Kratos',1,'kratos@gmail.com','1234',1);
+insert into utilisateur (nom,prenom,idgenre,email,mdp,roles) values ('DOE','John',1,'john@gmail.com','1234',3);
 
 create table services(
     idservice int primary key auto_increment,

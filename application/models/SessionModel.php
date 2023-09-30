@@ -5,7 +5,7 @@ class SessionModel extends CI_Model {
 
 	public function checkUser($email, $password)
 	{
-		$query = $this->db->query("select * from testa where email='$email' and mdp='$password'");
+		$query = $this->db->query("select * from utilisateur where email='$email' and mdp='$password'");
 		$row = $query->row_array();
 		if($row){
 			$this->load->library('session');
