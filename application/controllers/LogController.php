@@ -20,9 +20,9 @@ class LogController extends CI_Controller {
         $bool = $this->SessionModel->checkUser($email, $password);
         if($bool){
             $data = $_SESSION['huhu'];
-            /*if($data['estadmin'] != 10) $this->loadAccueil($data);
-            if($data['estadmin'] == 10) $this->loadAdminSpace($data);*/
-            $this->loadViewAccueil($data);
+            if($data['roles'] != 1) $this->loadViewAccueil($data);
+            if($data['roles'] == 1) $this->loadViewAdmin($data);
+            //$this->loadViewAccueil($data);
         }
         else if(!$bool){
             redirect('Welcome/index');                          

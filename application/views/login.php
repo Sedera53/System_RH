@@ -31,7 +31,7 @@
                 </div>
                 <h4>Hello! let's get started</h4>
                 <h6 class="font-weight-light">Sign in to continue.</h6>
-                <form class="pt-3" action="<?php echo base_url('C_login/validLogin')?>" method="post">
+                <form class="pt-3" action="<?php echo base_url('LogController/getLogin')?>" method="post">
                   <div class="form-group">
                     <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="E-mail" name="email">
                   </div>
