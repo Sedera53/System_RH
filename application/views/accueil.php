@@ -170,12 +170,12 @@
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
               <i class="menu-icon mdi mdi-card-text-outline"></i>
-              <span class="menu-title">menu title</span>
+              <span class="menu-title">Services checking</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="#pages/forms/basic_elements.html">Link1</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?php echo base_url('BaseController/showFormSaveDataService')?>">Adding services</a></li>
               </ul>
             </div>
           </li>

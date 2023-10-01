@@ -12,10 +12,16 @@ class BaseController extends CI_Controller {
 		}
 	}
 
+	public function showFormSaveDataService(){
+		$this->load->view('accueil');
+		$this->load->view('save_dataService');
+		$this->load->view('footer');
+	}
+
     public function showFormSaveService()
     {
         $this->load->view('accueil');
-		$this->load->view('save_service');
+		$this->load->view('selectService');
 		$this->load->view('footer');
     }
 
