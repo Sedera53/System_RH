@@ -2,6 +2,7 @@ CREATE TABLE genre(
     idgenre int primary key auto_increment,
     genre varchar(255)
 );
+insert into genre(genre) values ('Homme'),('Femme');
 CREATE TABLE Utilisateur(
     idUtilisateur int primary key auto_increment,
     nom varchar(100),
@@ -58,7 +59,7 @@ create table coefficient_diplome(
 create table coefficient_nationalite(
     idsnp int primary key auto_increment,
     idbesoin int references besoin(idbesoin),
-    iddiplome int references diplome(iddiplome),
+    idnationalite int references nationalite(idnationalite),
     coefficient int
 );
 create table coefficient_matrim(
