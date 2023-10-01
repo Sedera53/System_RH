@@ -29,19 +29,23 @@ create table nationalite(
     idnationalite int primary key auto_increment,
     nationalite varchar(100)
 );
-
+create table sit_matr(
+    idMatrimoniale int primary key auto_increment,
+    situation varchar(255)
+);
 create table besoin(
     idbesoin int primary key auto_increment,
     idservice int references services(idservice),
-    taux_jour_homme int,
-    poste_recherche varchar(100),
-    experience varchar(100),
-    annee_experience int,
-    salaire_min int,
-    salaire_max int,
     idnationalite int references nationalite(idnationalite),
     iddiplome int references diplome(iddpilome),
-    volume_horaire int
+    idMatrimoniale int references sit_matr(idMatrimoniale),
+    taux_jour_homme float,
+    volume_horaire float,
+    poste_recherche varchar(255),
+    experience varchar(255),
+    annee_experience int,
+    salaire_min float,
+    salaire_max float
 );
 create table coefficient_diplome(
     idsdp int primary key auto_increment,
@@ -52,6 +56,12 @@ create table coefficient_diplome(
 create table coefficient_nationalite(
     idsnp int primary key auto_increment,
     iddiplome int references diplome(iddiplome),
+    coefficient int,
+    idservice int references services(idservice)
+);
+create table coefficient_matrim(
+    idsm int primary key auto_increment,
+    idMatrimoniale int references sit_matr(idMatrimoniale),
     coefficient int,
     idservice int references services(idservice)
 );
