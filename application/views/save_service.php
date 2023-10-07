@@ -18,14 +18,16 @@
 <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Famenoana besoin</h4>
-                  <form class="form-sample">
+                  <h4 class="card-title">Famenoana besoin </h4>
+                  <form class="form-sample" method="post" action="<?php echo base_url('ServiceController/insertBesoin')?>">
+                  <input type="hidden" name="idservice" value="<?php echo $idservice;?>">
+                    <input type="hidden" name="nombesoin" value="<?php echo $nom;?>">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Taux jour homme</label>
                           <div class="col-sm-9">
-                            <input type="number" min="0" class="form-control" style="width:250px; margin-right:260px;"/>
+                            <input type="number" min="0" class="form-control" style="width:250px; margin-right:260px;" name="tjh"/>
                           </div>
                         </div>
                       </div>
@@ -33,7 +35,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Volume horaire</label>
                           <div class="col-sm-9">
-                            <input type="number" min="0" class="form-control" style="width:250px; margin-right:260px;"/>
+                            <input type="number" min="0" class="form-control" style="width:250px; margin-right:260px;" name="vh"/>
                           </div>
                         </div>
                       </div>
@@ -43,11 +45,10 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">Diplome</label>
                                 <div class="col-sm-9">
-                                  <select class="form-control" style="width:250px; margin-right:260px;">
-                                    <option>Category1</option>
-                                    <option>Category2</option>
-                                    <option>Category3</option>
-                                    <option>Category4</option>
+                                <select class="form-control" style="width:250px; margin-right:260px;" name="iddiplome">
+                                  <?php foreach ($diplomes as $diplome): ?>
+                                    <option value="<?php echo $diplome->iddiplome; ?>"><?php echo $diplome->diplome; ?></option>
+                                  <?php endforeach; ?>
                                   </select>
                                 </div>
                             </div>
@@ -56,7 +57,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Coefficient diplome</label>
                             <div class="col-sm-9">
-                              <input type="number" min="0" class="form-control" style="width:150px; margin-right:260px;"/>
+                              <input type="number" min="0" class="form-control" style="width:150px; margin-right:260px;" name="coeffdipl"/>
                             </div>
                           </div>
                       </div>
@@ -66,15 +67,19 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Poste recherche</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" style="width:250px; margin-right:260px;"/>
+                            <input type="text" class="form-control" style="width:250px; margin-right:260px;" name="poste"/>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label"></label>
+                          <label class="col-sm-3 col-form-label">Matrimoniale</label>
                           <div class="col-sm-9">
-                            <input type="hidden" class="form-control" />
+                              <select class="form-control" style="width:250px; margin-right:260px;" name="matr">
+                              <?php foreach ($matrimoniale as $matrimoniales): ?>
+                                <option value="<?php echo $matrimoniales->idMatrimoniale; ?>"><?php echo $matrimoniales->situation; ?></option>
+                                <?php endforeach; ?>
+                              </select>
                           </div>
                         </div>
                       </div>
@@ -85,7 +90,7 @@
                           <label class="col-sm-3 col-form-label">Expérience</label>
                           <div class="col-sm-9">
                             <!--<input type="text" class="form-control" style="width:250px; margin-right:260px;"/>-->
-                            <textarea name="" id="" style="width:250px; margin-right:260px;"></textarea>
+                            <textarea id="" style="width:250px; margin-right:260px;" name="exp" ></textarea>
                           </div>
                         </div>
                       </div>
@@ -93,7 +98,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Année d'experience requis</label>
                           <div class="col-sm-9">
-                            <input type="number" min="0" class="form-control" style="width:150px; margin-right:260px;"/>
+                            <input type="number" min="0" class="form-control" style="width:150px; margin-right:260px;" name="anneeExp"/>
                           </div>
                         </div>
                       </div>
@@ -103,11 +108,10 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Nationalité</label>
                             <div class="col-sm-9">
-                              <select class="form-control" style="width:250px; margin-right:260px;">
-                                <option>Category1</option>
-                                <option>Category2</option>
-                                <option>Category3</option>
-                                <option>Category4</option>
+                            <select class="form-control" style="width:250px; margin-right:260px;" name="idnationalite">
+                              <?php foreach ($nationalites as $nationalite): ?>
+                                    <option value="<?php echo $nationalite->idnationalite; ?>"><?php echo $nationalite->nationalite; ?></option>
+                                  <?php endforeach; ?>
                               </select>
                             </div>
                           </div>
@@ -116,7 +120,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Coefficient nationalite</label>
                             <div class="col-sm-9">
-                              <input type="number" min="0" class="form-control" style="width:150px; margin-right:260px;"/>
+                              <input type="number" min="0" class="form-control" style="width:150px; margin-right:260px;" name="coeffnation"/>
                             </div>
                           </div>
                       </div>
@@ -126,7 +130,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Salaire maximum</label>
                           <div class="col-sm-9">
-                            <input type="text" min="1" class="form-control" style="width:250px; margin-right:260px;"/>
+                            <input type="text" min="1" class="form-control" style="width:250px; margin-right:260px;" name="salmax"/>
                           </div>
                         </div>
                       </div>
@@ -134,12 +138,12 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Salaire minimum</label>
                           <div class="col-sm-9">
-                            <input type="text" min="1" class="form-control" style="width:250px; margin-right:260px;"/>
+                            <input type="text" min="1" class="form-control" style="width:250px; margin-right:260px;" name="salmin"/>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-primary d-block w-50 bg-primary" style=" font-size:20px;">Valider</button>
+                    <button type="submit" class="btn btn-primary d-block w-50 bg-primary" style=" font-size:20px;">Valider</button>
                   </form>
                 </div>
               </div>
