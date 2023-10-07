@@ -18,10 +18,10 @@ class BaseController extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-    public function showFormSaveService()
+    /*public function loadAnnonce()
     {
         $this->load->view('accueil');
-		$this->load->view('selectService');
+		$this->load->view('annonce');
 		$this->load->view('footer');
     }
 
@@ -29,5 +29,5 @@ class BaseController extends CI_Controller {
         $this->load->view('accueil');
 		$this->load->view('save_qcm');
 		$this->load->view('footer');
-    }
+    }*/
 }
