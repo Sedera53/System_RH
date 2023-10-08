@@ -38,7 +38,7 @@ create table besoin(
     idbesoin int primary key auto_increment,
     idservice int references services(idservice),
     idnationalite int references nationalite(idnationalite),
-    iddiplome int references diplome(iddpilome),
+    iddiplome int references diplome(iddiplome),
     idMatrimoniale int references sit_matr(idMatrimoniale),
     nombesoin varchar(255),
     taux_jour_homme float,
@@ -68,3 +68,23 @@ create table coefficient_matrim(
     idMatrimoniale int references sit_matr(idMatrimoniale),
     coefficient int
 );
+create table cv(
+    idcv int primary key auto_increment,
+    idbesoin int references besoin(idbesoin),
+    nom varchar(255),
+    prenom varchar(255),
+    numero varchar(255),
+    datenaissance date,
+    iddiplome int references diplome(iddiplome),
+    idMatrimoniale int references sit_matr(idMatrimoniale),
+    idsex int references genre(idgenre),
+    experience text
+);
+-- raha ohatra ka ataotsika checkbox 
+-- ilay selection diplome na selection multiple
+create table cvdiplome(
+    idcv int references cv(idcv),
+    iddiplome int references diplome(iddiplome)
+);
+
+insert into cv (idbesoin,nom,prenom,numero,datenaissance,iddiplome,idMatrimoniale,idsex,experience) values 
