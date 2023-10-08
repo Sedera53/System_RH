@@ -86,3 +86,5 @@ create table cvdiplome(
     idcv int references cv(idcv),
     iddiplome int references diplome(iddiplome)
 );
+
+insert into cv (idbesoin,nom,prenom,numero,datenaissance,iddiplome,idMatrimoniale,idsex,experience) values 
