@@ -11,11 +11,57 @@ class ServiceController extends CI_Controller {
 			redirect("Welcome/index");
 		}
 	}
-
-	public function loadViewCv(){
+	public function loadSelectionCv(){
 		$this->load->view('accueil');
-		$this->load->view('save_cvClient');
+		$this->load->view('selectionCv');
 		$this->load->view('footer');
+	}
+	public function loadAttente(){
+		$this->load->model('UtilModel');
+		$data['data'] = $this->UtilModel->getAllAttente();
+		$this->load->view('accueil');
+		$this->load->view('cvattente',$data);
+		$this->load->view('footer');
+	}
+	public function addCv(){
+		$this->load->model('UtilModel');
+		$idbesoin = $this->input->post('idbesoin');
+		$nom = $this->input->post('nom');
+		$prenom= $this->input->post('prenom');
+		$numero = $this->input->post('phone');
+		$datenaissance = $this->input->post('datenaiss');
+		$iddiplome = $this->input->post('iddiplome');
+		$experience = $this->input->post('exp');
+		$idMatrimoniale = $this->input->post('idmatr');
+		$idsex = $this->input->post('idsex');
+		$idnationalite = $this->input->post('idnationalite');
+		$annee = $this->input->post('anneeexp');
+
+		if (!empty($idbesoin)&&!empty($nom)&&!empty($prenom)&&!empty($numero)&&!empty($datenaissance)&&!empty($iddiplome)&&!empty($experience)&&!empty($idMatrimoniale)&&!empty($idsex)&&!empty($idnationalite)&&!empty($annee)) { 
+			$this->UtilModel->insertCv($idbesoin,$nom,$prenom,$numero,$datenaissance,$iddiplome,$idMatrimoniale,$idsex,$experience,$idnationalite,$annee);
+		}
+		$this->loadViewAnnonce();
+	}
+	public function loadViewCv(){
+		$queryDiplome = $this->db->get('diplome');
+        $data['diplomes'] = $queryDiplome->result();
+		
+        $queryNationalite = $this->db->get('nationalite');
+        $data['nationalites'] = $queryNationalite->result();
+		
+		$queryMatrimonialee = $this->db->get('sit_matr');
+        $data['matrimoniales'] = $queryMatrimonialee->result();
+		
+		$queryGenre = $this->db->get('genre');
+        $data['genres'] = $queryGenre->result();
+
+		$idbesoin = $this->input->get('idbesoin');
+		$data['idbesoin'] = $idbesoin;
+
+			$this->load->view('accueil');
+			$this->load->view('save_cvClient',$data);
+			$this->load->view('footer');
+		
 	}
 	
 	public function loadViewAnnonce(){
@@ -61,7 +107,7 @@ class ServiceController extends CI_Controller {
 		$idservice = $this->input->post('idservice');
 		$nombesoin = $this->input->post('nombesoin');
 		$tauxjourhomme = $this->input->post('tjh');
-  $volumehoraire = $this->input->post('vh');
+  		$volumehoraire = $this->input->post('vh');
 		$iddiplome = $this->input->post('iddiplome');
 		$coeffdipl = $this->input->post('coeffdipl');
 		$poste = $this->input->post('poste');

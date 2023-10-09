@@ -68,7 +68,7 @@ class BesoinModel extends CI_Model {
         );
         $this->db->insert('besoin', $data);
         $idbesoin = $this->getIdMaxBesoin();
-        var_dump($idbesoin);
+        //var_dump($idbesoin);
         $this->insertCoeffDiplome($iddiplome, $coeffdiplome, $idbesoin);
         $this->insertCoeffNationalite($idnationalite, $coeffnationalite, $idbesoin);
         return $this->db->insert_id();

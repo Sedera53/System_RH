@@ -48,7 +48,7 @@
                     <p class="lead">
                         <?php echo $tab[1][$i]['experience']?>
                     </p>
-                    <a href="<?php echo base_url('ServiceController/loadViewCv')?>"><button class="btn btn-secondary">Postuler</button></a>
+                    <a href="<?php echo base_url('ServiceController/loadViewCv')?>?idbesoin=<?php echo $tab[1][$i]['idbesoin']?>"><button class="btn btn-secondary">Postuler</button></a>
                     </div>
                 </div>
                 </div>
