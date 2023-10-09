@@ -77,7 +77,9 @@ create table cv(
     datenaissance date,
     iddiplome int references diplome(iddiplome),
     idMatrimoniale int references sit_matr(idMatrimoniale),
+    idnationalite int references nationalite(idnationalite),
     idsex int references genre(idgenre),
+    annee_experience int,
     experience text
 );
 -- raha ohatra ka ataotsika checkbox 
@@ -87,4 +89,26 @@ create table cvdiplome(
     iddiplome int references diplome(iddiplome)
 );
 
-insert into cv (idbesoin,nom,prenom,numero,datenaissance,iddiplome,idMatrimoniale,idsex,experience) values 
+insert into cv (idbesoin,nom,prenom,numero,datenaissance,iddiplome,idMatrimoniale,idsex,experience) values
+
+create table cvattente(
+    idattente int primary key auto_increment,
+    idcv int references cv(idcv),
+    etat int default 0
+);
+
+select b.idbesoin,b.idservice,s.services,b.idnationalite,n.nationalite,b.iddiplome,d.diplome,b.idMatrimoniale,sm.situation,b.nombesoin,
+        b.taux_jour_homme,b.volume_horaire,b.poste_recherche,b.experience,
+        b.annee_experience,b.daty,b.salaire_min,b.salaire_max
+    from besoin b
+        join diplome d on d.iddiplome = b.iddiplome
+        join nationalite n on n.idnationalite = b.idnationalite
+        join sit_matr sm on sm.idMatrimoniale = b.idMatrimoniale 
+        join services s on s.idservice = b.idservice;
+
+-- selection cv partI --
+select ca.idattente,ca.idcv,c.nom,b.idservice,s.services,b.experience,b.nombesoin
+    from cvattente ca
+        join cv c on c.idcv = ca.idcv
+        join besoin b on b.idbesoin = c.idbesoin
+        join services s on s.idservice = b.idservice group by ca.idcv;

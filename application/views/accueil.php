@@ -198,7 +198,7 @@
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">Tsaiko</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('ServiceController/loadAttente')?>">CV en attente</a></li>
               </ul>
             </div>
           </li>
@@ -211,7 +211,7 @@
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#pages/samples/login.html"> Login </a></li>
+                <li class="nav-item"> <a class="nav-link" href="#"> Login </a></li>
               </ul>
             </div>
           </li>
